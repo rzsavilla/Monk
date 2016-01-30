@@ -40,6 +40,5 @@ sf::Vector2f Moveable::Update()
 	}
 	sf::Vector2f hello = Maths2D::UnitVector(vTarget - vPos) * fSpeed;
 	fVelo = hello;
-	//std::cout << "X: " << vPos.x << "\t Y:" << vPos.y << std::endl;
 	return fVelo;
 }

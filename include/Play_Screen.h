@@ -5,6 +5,8 @@
 #include "InputHandler.h"
 #include "Spawner.h"
 
+#include "MonkGroup.h"
+
 class Play_Screen: public sf::Drawable
 {
 private:
@@ -13,6 +15,7 @@ private:
 	sf::Texture texture;
 	sf::Sprite background;
 	sf::Texture bg;
+	MonkGroup monkGroup;
 public:
 	Play_Screen();
 	int update(sf::Time h,InputHandler& input);

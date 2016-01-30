@@ -1,6 +1,8 @@
 #ifndef COLLISION2D_H
 #define COLLISION2D_H
 
+class Entity;
+
 #include <SFML\Graphics\Sprite.hpp>
 #include <SFML\System\Vector2.hpp>
 

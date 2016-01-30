@@ -12,15 +12,13 @@
 class Game
 {
 private:
-	
-	Start_Screen start_screen;
-	Pause_Screen pause_screen;
-	End_Screen end_screen;
-	Play_Screen play_screen;
 	int iState;
+	Start_Screen start_screen;					// State 0
+	Play_Screen play_screen;					// State 1
+	Pause_Screen pause_screen;					// State 2
+	End_Screen end_screen;						// State 3
 	InputHandler input;
 	sf::RenderWindow window;
-
 	sf::Clock timer;
 private:
 	void handleEvents();

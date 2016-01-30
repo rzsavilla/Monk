@@ -4,6 +4,8 @@
 
 Game::Game() : window(sf::VideoMode(1280, 720), "Monk", sf::Style::Titlebar | sf::Style::Close)
 {
+	window.setFramerateLimit(60);
+	window.setKeyRepeatEnabled(false);
 	start_screen.GetWindow(window.getSize());
 	pause_screen.GetWindow(window.getSize());
 	end_screen.GetWindow(window.getSize());
@@ -28,16 +30,16 @@ void Game::handleEvents()
 			window.close();
 		}
 		if (event.type == sf::Event::KeyPressed) {
-			input.updateKeyPress(event.key.code, true);
+			input.updateKeyPress(event.key.code, true);									//Key Pressed
 		}
 		if (event.type == sf::Event::KeyReleased) {
-			input.updateKeyPress(event.key.code, false);
+			input.updateKeyPress(event.key.code, false);								//Key Pressed
 		}
 		if (event.type == sf::Event::MouseButtonPressed) {
 			input.updateMousePress(event.mouseButton.button, true);
 		}
 		else if (event.type == sf::Event::MouseButtonReleased) {
-			//input.updateMousePress(event.mouseButton.button, false);
+			input.updateMousePress(event.mouseButton.button, false);
 		}
 		if (event.type == sf::Event::MouseMoved) {
 			input.updateMousePos(sf::Mouse::getPosition(window));				//!< \param takes mouse position relative to window
@@ -77,6 +79,5 @@ void Game::render()
 	else if (iState == 3) {					//!< End Screen
 		window.draw(end_screen);
 	}
-
 	window.display();
 }

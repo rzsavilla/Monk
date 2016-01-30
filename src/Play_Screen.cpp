@@ -17,12 +17,13 @@ Play_Screen::Play_Screen() {
 	spawner.setPosition(sf::Vector2f(sf::Vector2f(1280 / 2,720 / 2)));
 	spawner.setSpawn(enemy);
 	spawner.spawn();
+
+	/////////Monks Group Test
 }
 
 int Play_Screen::update(sf::Time h,InputHandler& input) {
-
 	spawner.update(h);
-
+	monkGroup.update(h);
 	int iNewState = 1;
 	//Check button presses
 	if (input.bEsc) {
@@ -39,6 +40,7 @@ int Play_Screen::update(sf::Time h,InputHandler& input) {
 void Play_Screen::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	//target.draw(enemy,states);
+	target.draw(monkGroup, states);
 	target.draw(spawner, states);
 	//target.draw(background, states);
 }

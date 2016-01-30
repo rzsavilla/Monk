@@ -15,7 +15,6 @@ void Spawner::createPoints() {					//Generate Spawning Positions
 		Points[i].y = (fRadius * (sin(t))) + pos.y;
 		t += fdetlaT;
 	}
-
 }
 
 void Spawner::setPoints(int num) {
@@ -58,12 +57,6 @@ bool Spawner::isFinished() {
 
 void Spawner::randGenerate() {
 	srand(time(NULL)); //always seed your RNG before using it
-	/*
-	for (int i = 0; i < iSpawnCount; i++) {
-		randomPosition.push_back(rand() % iNumPoints);
-		std::cout << randomPosition[i] << std::endl;
-	}
-	*/
 	
 	for (int i = 0; i<iSpawnCount ; i++)								//generate random numbers:
 	{

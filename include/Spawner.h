@@ -33,7 +33,6 @@ public:
 	void update(sf::Time h);
 	void spawn();									//Start Spawning
 	bool isFinished();
-
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 
