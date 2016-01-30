@@ -5,6 +5,7 @@
 Game::Game() : window(sf::VideoMode(1280, 720), "Monk", sf::Style::Titlebar | sf::Style::Close)
 {
 	start_screen.GetWindow(window.getSize());
+	pause_screen.GetWindow(window.getSize());
 	iState = 0;
 }
 
@@ -52,7 +53,7 @@ void Game::update()
 
 	}
 	else if (iState == 2) {					//!< Pause Screen
-
+		iState = pause_screen.update(input);
 	}
 	else if (iState == 3) {					//!< End Screen
 
@@ -70,7 +71,7 @@ void Game::render()
 		
 	}
 	else if (iState == 2) {					//!< Pause Screen
-
+		window.draw(pause_screen);
 	}
 	else if (iState == 3) {					//!< End Screen
 

@@ -1,29 +1,20 @@
 #ifndef PAUSE_SCREEN_H
 #define PAUSE_SCREEN_H
 
-#include <SFML/Graphics.hpp>
 #include "InputHandler.h"
 
 class Pause_Screen : public sf::Drawable
 {
 private:
-	sf::RectangleShape button;
+	sf::Sprite background;
+	sf::Texture bg;
+	sf::RectangleShape Pause_Button;
 public:
-	Pause_Screen()
-	{
-		button.setFillColor(sf::Color::Blue);
-		button.setPosition(sf::Vector2f(200, 200));
-	}
+	Pause_Screen();
+	void GetWindow(sf::Vector2u windowSize);
+	int update(InputHandler& input);
 
-	void update(InputHandler& input) {
-		if (input.bLeftClick) {
-			button.setFillColor(sf::Color::Green);
-		}
-	}
-
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const {
-		target.draw(button, states);
-	}
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 
 #endif

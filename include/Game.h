@@ -3,11 +3,13 @@
 
 #include <SFML/Graphics.hpp>
 #include "Start_Screen.h"
+#include "Pause_Screen.h"
 
 class Game
 {
 private:
 	Start_Screen start_screen;
+	Pause_Screen pause_screen;
 	int iState;
 	InputHandler input;
 	sf::RenderWindow window;

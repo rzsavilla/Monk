@@ -2,7 +2,7 @@
 
 Start_Screen::Start_Screen()
 {
-	bg.loadFromFile("assets\\sprites\\background.png");
+	bg.loadFromFile("assets\\sprites\\start_background.png");
 	background.setTexture(bg);
 
 	Start_Button.setFillColor(sf::Color::Green);
@@ -21,6 +21,10 @@ int Start_Screen::update(InputHandler& input)
 	//Check button presses
 	if (input.bUp) {
 		iNewState = 1;
+	}
+	//need to change at one point, test going to pause screen
+	else if (input.bDown) {
+		iNewState = 2;
 	}
 
 	return iNewState;
