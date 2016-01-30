@@ -5,12 +5,15 @@
 
 class Start_Screen:  public sf::Drawable  
 {
+private:
+	sf::Sprite background;
+	sf::Texture bg;
+	sf::RectangleShape Start_Button;
 public:
 	Start_Screen();
+	void GetWindow(sf::Vector2u windowSize);
 	int update(InputHandler& input);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-private:
-	sf::RectangleShape Start_Button;
 };
 
 #endif

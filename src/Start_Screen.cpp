@@ -1,9 +1,18 @@
 #include "Start_Screen.h"
 
-Start_Screen::Start_Screen() {
+Start_Screen::Start_Screen()
+{
+	bg.loadFromFile("assets\\sprites\\background.png");
+	background.setTexture(bg);
+
 	Start_Button.setFillColor(sf::Color::Green);
-	Start_Button.setSize(sf::Vector2f(50, 50));
-	Start_Button.setPosition(sf::Vector2f(100.f, 100.f));
+	Start_Button.setSize(sf::Vector2f(200, 50));
+	Start_Button.setOrigin(Start_Button.getSize() / 2.f);
+}
+
+void Start_Screen::GetWindow(sf::Vector2u windowSize) 
+{
+	Start_Button.setPosition(sf::Vector2f(windowSize.x / 2, windowSize.y / 2));
 }
 
 int Start_Screen::update(InputHandler& input)
@@ -19,7 +28,8 @@ int Start_Screen::update(InputHandler& input)
 
 void Start_Screen::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	target.draw(Start_Button,states);
+	target.draw(background, states);
+	target.draw(Start_Button, states);
 }
 //void Start_Screen::update(InputHandler& input)
 //{

@@ -2,8 +2,9 @@
 
 #include <iostream>
 
-Game::Game() : window(sf::VideoMode(1280, 640), "Monk", sf::Style::Titlebar | sf::Style::Close)
+Game::Game() : window(sf::VideoMode(1280, 720), "Monk", sf::Style::Titlebar | sf::Style::Close)
 {
+	start_screen.GetWindow(window.getSize());
 	iState = 0;
 }
 
