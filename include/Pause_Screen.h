@@ -13,7 +13,6 @@ public:
 	Pause_Screen();
 	void GetWindow(sf::Vector2u windowSize);
 	int update(InputHandler& input);
-
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 

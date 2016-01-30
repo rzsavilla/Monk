@@ -8,7 +8,8 @@
 class Play_Screen: public sf::Drawable
 {
 private:
-
+	sf::Sprite background;
+	sf::Texture bg;
 public:
 	Play_Screen();
 	int update(InputHandler& input);
