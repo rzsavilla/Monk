@@ -2,10 +2,12 @@
 #define GAME_H
 
 #include <SFML/Graphics.hpp>
+#include "InputHandler.h"
 
 class Game
 {
 private:
+	InputHandler input;
 	sf::RenderWindow window;
 	void handleEvents();
 	void update();
