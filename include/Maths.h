@@ -9,7 +9,7 @@ namespace Maths
 	const float RadToDeg = 180 / PI;
 	const float DegToRad = PI / 180;
 
-	float GetMag(sf::Vector2f vector)
+	float Magnitude(sf::Vector2f vector)
 	{
 		return sqrt((vector.x * vector.x) + (vector.y * vector.y));
 	}

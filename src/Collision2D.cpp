@@ -13,7 +13,7 @@ bool Collision2D::HaveCollided_Circle(const sf::Sprite& sprite1, const sf::Sprit
 float Collision2D::GetRadius(const sf::Sprite& sprite)
 {
 	// Calculate the radius of the sprite
-	const sf::Vector2f kfSpriteSize = GetSize(kSprite);
+	const sf::Vector2f kfSpriteSize = GetSize(sprite);
 	return (kfSpriteSize.x + kfSpriteSize.y) / 4;
 }
 
