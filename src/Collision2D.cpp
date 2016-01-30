@@ -1,11 +1,11 @@
 #include "Collision2D.h"
-#include "Maths.h"
+#include "Maths2D.h"
 
 bool Collision2D::HaveCollided_Circle(const sf::Sprite& sprite1, const sf::Sprite& sprite2)
 {
 	// Check for a collision between the two circles
 	const sf::Vector2f kfCenterSubtraction = GetCenter(sprite1) - GetCenter(sprite2);
-	const float kfMagnitude = Maths::Magnitude(kfCenterSubtraction);
+	const float kfMagnitude = Maths2D::Magnitude(kfCenterSubtraction);
 	const float kfRadiiSum = GetRadius(sprite1) + GetRadius(sprite2);
 	return kfMagnitude < kfRadiiSum;
 }
