@@ -10,6 +10,10 @@ int Start_Screen::update(InputHandler& input)
 {
 	int  iNewState = 0;
 	//Check button presses
+	if (input.bUp) {
+		iNewState = 1;
+	}
+
 	return iNewState;
 }
 

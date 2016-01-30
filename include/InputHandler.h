@@ -11,6 +11,7 @@ public:
 	InputHandler();
 	bool bUp, bDown, bLeft, bRight;
 	bool bLeftClick, bRightClick, bMiddleClick;
+public:
 	void updateKeyPress(sf::Keyboard::Key key, bool isPressed);
 	void updateMousePress(sf::Mouse::Button button, bool isPressed);
 	void updateMousePos(sf::Vector2i position);

@@ -27,14 +27,14 @@ void Game::handleEvents()
 		if (event.type == sf::Event::KeyPressed) {
 			input.updateKeyPress(event.key.code, true);
 		}
-		if (event.type == sf::Event::KeyPressed) {
+		if (event.type == sf::Event::KeyReleased) {
 			input.updateKeyPress(event.key.code, false);
 		}
 		if (event.type == sf::Event::MouseButtonPressed) {
 			input.updateMousePress(event.mouseButton.button, true);
 		}
-		if (event.type == sf::Event::MouseButtonReleased) {
-			input.updateMousePress(event.mouseButton.button, false);
+		else if (event.type == sf::Event::MouseButtonReleased) {
+			//input.updateMousePress(event.mouseButton.button, false);
 		}
 		if (event.type == sf::Event::MouseMoved) {
 			input.updateMousePos(sf::Mouse::getPosition(window));				//!< \param takes mouse position relative to window
@@ -63,7 +63,6 @@ void Game::render()
 	window.clear();
 
 	if (iState == 0) {						//!< Start Screen
-		std::cout << "draw StartScreen\n";
 		window.draw(start_screen);
 	}
 	else if (iState == 1) {					//!< Game Screen
