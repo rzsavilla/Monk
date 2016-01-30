@@ -2,6 +2,7 @@
 #define COLLISION2D_H
 
 #include <SFML\Graphics\Sprite.hpp>
+#include <SFML\System\Vector2.hpp>
 
 class Maths;
 

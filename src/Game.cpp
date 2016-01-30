@@ -40,8 +40,8 @@ void Game::handleEvents() {
 void Game::update() {
 
 }
+
 void Game::render() {
 	window.clear();
-
 	window.display();
 }
