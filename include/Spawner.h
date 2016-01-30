@@ -9,6 +9,7 @@
 class Spawner: public sf::Drawable
 {
 private:
+	sf::CircleShape toSpawn;
 	int iNumPoints;
 	float fRadius;
 	sf::Vector2f position;
@@ -18,12 +19,10 @@ private:
 
 public:
 	Spawner();
-
 	void setPoints(int num);
 	void setRadius();
 	void setPosition(sf::Vector2f position);
-
-
+	void setSpawn(sf::CircleShape& shape);
 	void update(sf::Time h);
 };
 
