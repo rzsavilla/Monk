@@ -1,15 +1,21 @@
 #include "Start_Screen.h"
 
-Start_Screen::Start_Screen() {}
+Start_Screen::Start_Screen() {
+	Start_Button.setFillColor(sf::Color::Green);
+	Start_Button.setSize(sf::Vector2f(50, 50));
+	Start_Button.setPosition(sf::Vector2f(100.f, 100.f));
+}
 
-void Start_Screen::update(InputHandler& input)
+int Start_Screen::update(InputHandler& input)
 {
-
+	int  iNewState = 0;
+	//Check button presses
+	return iNewState;
 }
 
 void Start_Screen::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-
+	target.draw(Start_Button,states);
 }
 //void Start_Screen::update(InputHandler& input)
 //{

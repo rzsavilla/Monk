@@ -2,18 +2,17 @@
 #define GAME_H
 
 #include <SFML/Graphics.hpp>
-#include "InputHandler.h"
 #include "Start_Screen.h"
-
-enum GameState { STARTMENU, RUNNING, PAUSED };
 
 class Game
 {
 private:
-	//Start_Screen start_screen;
-	GameState gameState;
+	Start_Screen start_screen;
+	int iState;
 	InputHandler input;
 	sf::RenderWindow window;
+private:
+	
 	void handleEvents();
 	void update();
 	void render();

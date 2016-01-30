@@ -4,7 +4,7 @@
 
 Game::Game() : window(sf::VideoMode(1280,640), "Monk", sf::Style::Titlebar|sf::Style::Close)
 {
-	gameState = STARTMENU;
+	iState = 0;
 }
 
 void Game::run()
@@ -44,23 +44,37 @@ void Game::handleEvents()
 
 void Game::update() 
 {
-	/*
-		While looping for collisions check for dragging
-	*/
+	if (iState == 0) {						//!< Start Screen
+		iState = start_screen.update(input);
+	}
+	else if (iState == 1) {					//!< Game Screen
 
-	// Check if the player is dragging an enemy
-	
-	/*
-		if (input.bLeftClick)
-		{
-			// Check if mouse position intersects with the sprite
-			// if so make the sprite's position that of the mouse's
-		}
-	*/
+	}
+	else if (iState == 2) {					//!< Pause Screen
+
+	}
+	else if (iState == 3) {					//!< End Screen
+
+	}
 }
 
 void Game::render() 
 {
 	window.clear();
+
+	if (iState == 0) {						//!< Start Screen
+		std::cout << "draw StartScreen\n";
+		window.draw(start_screen);
+	}
+	else if (iState == 1) {					//!< Game Screen
+
+	}
+	else if (iState == 2) {					//!< Pause Screen
+
+	}
+	else if (iState == 3) {					//!< End Screen
+
+	}
+
 	window.display();
 }
