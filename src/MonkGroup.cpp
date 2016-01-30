@@ -3,13 +3,12 @@
 MonkGroup::MonkGroup() {
 	monkTexture.loadFromFile("assets/sprites/monk.png");
 	monk.setTexture(monkTexture);
-	monk.SetSpeed(10);
+	monk.SetSpeed(100);
 	monk.SetMaxSpeed(100);
-	iMonkNum = 10;
-	fRadius = 100.f;
+	iMonkNum = 5;
+	fRadius = 100;
 	Position = sf::Vector2f(640, 360);
 	createMonks();
-	//std::cout << "Monks created\n";
 }
 
 MonkGroup::MonkGroup(sf::Vector2f position, int NumberOfMonks, float fRadius) {
@@ -24,7 +23,8 @@ void MonkGroup::createMonks() {
 		//std::cout << targetPosition.y << std::endl;
 		Monks.push_back(monk);
 		Monks.back().setPosition(targetPosition);		//Spawns monk onto position
-		Monks.back().SetTarget(targetPosition);			//Monks will move towards target
+		Monks.back().SetTarget(targetPosition + sf::Vector2f(50.f,50.f));			//Monks will move towards target
+		//Monks.back().SetTarget(sf::Vector2f(100,300.f));			//Monks will move towards target
 		t += fdetlaT;
 	}
 }
@@ -46,7 +46,14 @@ void MonkGroup::setPosition(sf::Vector2f position) {
 
 void MonkGroup::update(sf::Time h) {
 	for (int i = 0; i < Monks.size(); i++) {
-		Monks[i].Update();
+		Monks[i].update(h);
+	}
+	for (int i = 0; i < Monks.size(); i++) {
+		for (int j = 1; j < Monks.size(); j++) {
+			//if (Monks.at(i).impulseCollision(Monks.at(j))) {
+				//std::cout << "Collision\n";
+			//}
+		}
 	}
 }
 

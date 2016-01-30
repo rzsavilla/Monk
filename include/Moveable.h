@@ -24,6 +24,7 @@ public:
 	void SetAccel(float accel);
 	void SetTarget(sf::Vector2f target);
 	sf::Vector2f Update();
+	void setVelocity(sf::Vector2f velocity);
 };
 
 #endif

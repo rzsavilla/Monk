@@ -42,3 +42,7 @@ sf::Vector2f Moveable::Update()
 	fVelo = hello;
 	return fVelo;
 }
+
+void Moveable::setVelocity(sf::Vector2f velocity) {
+	fVelo = velocity;
+}
