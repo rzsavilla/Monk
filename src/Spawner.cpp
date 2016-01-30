@@ -15,3 +15,23 @@ void Spawner::createPoints() {					//Generate Spawning Positions
 		t += fdetlaT;
 	}
 }
+
+void Spawner::setPoints(int num) {}
+void Spawner::setRadius() {}
+void Spawner::setPosition(sf::Vector2f position) {}
+void Spawner::setSpawn(sf::CircleShape& shape) {}
+void Spawner::update(sf::Time h) {
+	
+}
+
+void Spawner::spawn() {
+	bSpawning = true;
+}									//Start Spawning
+bool Spawner::isFinished() {
+	if (bSpawning) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
