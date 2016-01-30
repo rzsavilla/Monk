@@ -1,9 +1,12 @@
 #include "Entity.h"
-
+#include <iostream>
 Entity::Entity() {
 
 }
 
 void Entity::update(sf::Time h) {
-	move(fVelo * h.asSeconds());
+	SetPos(getPosition());
+	std::cout << getPosition().x << std::endl;
+	move(Moveable::Update() * h.asSeconds());
+	
 }

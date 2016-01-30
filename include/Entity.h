@@ -12,8 +12,9 @@ class Entity : public Moveable, public sf::Sprite, public Collision2D, public He
 {
 public:
 	Entity();
-private:
 	void update(sf::Time h);
+private:
+	
 };
 
 #endif

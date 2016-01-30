@@ -1,7 +1,8 @@
 #include "Spawner.h"
-
+#include <iostream>
 Spawner::Spawner() {
-	
+	bSpawning = false;
+	iSpawnCount = 10;
 }
 
 void Spawner::createPoints() {					//Generate Spawning Positions
@@ -30,17 +31,21 @@ void Spawner::setSpawn(Entity& entity) {
 	spawnEntity = entity;
 }
 void Spawner::update(sf::Time h) {
-	if (bSpawning) {
-		for (int i = 0; i < iSpawnCount; i++) {
-			entitiesSpawned.push_back(spawnEntity);
-			spawnEntity.setPosition(Points[randomPosition[i]]);
-		}
+	for (int i = 0; i < entitiesSpawned.size(); i++) {
+		entitiesSpawned.at(i).update(h);
 	}
 }
 
 void Spawner::spawn() {
+	createPoints();
 	bSpawning = true;
 	randGenerate();
+	
+	for (int i = 0; i < iSpawnCount; i++) {
+		entitiesSpawned.push_back(spawnEntity);
+		entitiesSpawned.back().setPosition(Points[randomPosition[i]]);
+	}
+	
 }									//Start Spawning
 bool Spawner::isFinished() {
 	if (bSpawning) {
@@ -53,12 +58,17 @@ bool Spawner::isFinished() {
 
 void Spawner::randGenerate() {
 	srand(time(NULL)); //always seed your RNG before using it
-
-	//generate random numbers:
-	for (int i = 0; i<iSpawnCount ; i++)
+	/*
+	for (int i = 0; i < iSpawnCount; i++) {
+		randomPosition.push_back(rand() % iNumPoints);
+		std::cout << randomPosition[i] << std::endl;
+	}
+	*/
+	
+	for (int i = 0; i<iSpawnCount ; i++)								//generate random numbers:
 	{
-		bool check; //variable to check or number is already used
-		int n; //variable to store the number in
+		bool check;														//variable to check or number is already used
+		int n;															//variable to store the number in
 		do
 		{
 			n = rand() % iNumPoints;
@@ -71,7 +81,13 @@ void Spawner::randGenerate() {
 				break; //no need to check the other elements of value[]
 			}
 		} while (!check); //loop until new, unique number is found
-		randomPosition[i] = n; //store the generated number in the array
+		randomPosition.push_back(n); //store the generated number in the array
 	}
 	//at this point in the program we have an array value[] with a serie of unique random numbers 
+}
+
+void Spawner::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+	for (int i = 0; i < entitiesSpawned.size();i++) {
+		target.draw(entitiesSpawned[i],states);
+	}
 }

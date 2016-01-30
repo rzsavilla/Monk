@@ -31,13 +31,15 @@ void Moveable::SetTarget(sf::Vector2f target)
 	vTarget = target;
 }
 
-void Moveable::Update()
+sf::Vector2f Moveable::Update()
 {
 	fSpeed += fAccel;
 	if (fSpeed > fMaxSpeed)
 	{
 		fSpeed = fMaxSpeed;
 	}
-
-	fVelo = Maths2D::UnitVector(vTarget - vPos) * fSpeed;
+	sf::Vector2f hello = Maths2D::UnitVector(vTarget - vPos) * fSpeed;
+	fVelo = hello;
+	//std::cout << "X: " << vPos.x << "\t Y:" << vPos.y << std::endl;
+	return fVelo;
 }

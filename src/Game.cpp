@@ -15,7 +15,7 @@ void Game::run()
 	while (window.isOpen()) 
 	{
 		handleEvents();
-		update();
+		update(timer.restart());
 		render();
 	}
 }
@@ -45,13 +45,13 @@ void Game::handleEvents()
 	}
 }
 
-void Game::update() 
+void Game::update(sf::Time h) 
 {
 	if (iState == 0) {						//!< Start Screen
 		iState = start_screen.update(input);
 	}
 	else if (iState == 1) {					//!< Game Screen
-		iState = play_screen.update(input);
+		iState = play_screen.update(h,input);
 	}
 	else if (iState == 2) {					//!< Pause Screen
 		iState = pause_screen.update(input);

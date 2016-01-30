@@ -2,7 +2,7 @@
 #define MOVEABLE_H
 
 #include <SFML/System/Vector2.hpp>
-
+#include <iostream>
 class Moveable
 {
 private:
@@ -15,11 +15,15 @@ protected:
 	sf::Vector2f fVelo;
 public:
 	Moveable();
+	void SetPos(sf::Vector2f pos) {
+		vPos = pos;
+		std::cout << pos.x << std::endl;
+	}
 	void SetSpeed(float speed);
 	void SetMaxSpeed(float maxSpeed);
 	void SetAccel(float accel);
 	void SetTarget(sf::Vector2f target);
-	void Update();
+	sf::Vector2f Update();
 };
 
 #endif

@@ -17,6 +17,7 @@ private:
 	std::vector<sf::Vector2f> Points;				//Positions to spawn from
 	void createPoints();							//Create the position points
 	int iSpawnCount;								//Number of Entities to spawn
+	int iCounter;
 	Entity spawnEntity;									//Entity that will be spawned
 	bool bSpawning;									//If Spawner is currently spawning
 
@@ -32,6 +33,8 @@ public:
 	void update(sf::Time h);
 	void spawn();									//Start Spawning
 	bool isFinished();
+
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 
 #endif
