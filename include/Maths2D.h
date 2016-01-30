@@ -7,13 +7,30 @@
 namespace Maths2D
 {
 	const float PI = 3.14159;
-	const float RadToDeg = 180 / PI;
-	const float DegToRad = PI / 180;
 
 	template <class T>
 	float Magnitude(sf::Vector2<T> vector)
 	{
 		return sqrt((vector.x * vector.x) + (vector.y * vector.y));
+	}
+
+	template <class T>
+	sf::Vector2<T> UnitVector(sf::Vector2<T>& vector)
+	{
+		const float kfMagnitude = Maths2D::Magnitude(vector);
+		return vector / kfMagnitude;
+	}
+
+	template <class T>
+	T RadToDeg(float radians)
+	{
+		return radians * 180 / PI;
+	}
+
+	template <class T>
+	T DegToRad(float degrees)
+	{
+		return degrees * PI / 180;
 	}
 };
 
