@@ -1,6 +1,8 @@
 #ifndef MOVEABLE_H
 #define MOVEABLE_H
 
+#include <SFML/System/Vector2.hpp>
+
 class Moveable
 {
 private:
