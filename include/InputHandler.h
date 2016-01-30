@@ -8,6 +8,7 @@ class InputHandler
 private:
 	sf::Vector2i mousePos;
 public:
+	InputHandler();
 	bool bUp, bDown, bLeft, bRight;
 	bool bLeftClick, bRightClick, bMiddleClick;
 	void updateKeyPress(sf::Keyboard::Key key, bool isPressed);

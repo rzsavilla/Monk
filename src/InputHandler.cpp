@@ -1,5 +1,17 @@
 #include "InputHandler.h"
 
+InputHandler::InputHandler()
+{
+	// Initialisation
+	bUp = false;
+	bDown = false;
+	bLeft = false;
+	bRight = false;
+	bLeftClick = false;
+	bRightClick = false;
+	bMiddleClick = false;
+}
+
 void InputHandler::updateKeyPress(sf::Keyboard::Key key, bool isPressed) {
 	switch (key)
 	{

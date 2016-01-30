@@ -1,12 +1,16 @@
 #include "Game.h"
 
-Game::Game() : window(sf::VideoMode(1280,640), "Monk", sf::Style::Titlebar|sf::Style::Close) {
+#include <iostream>
 
+Game::Game() : window(sf::VideoMode(1280,640), "Monk", sf::Style::Titlebar|sf::Style::Close)
+{
+	gameState = STARTMENU;
 }
 
 void Game::run()
 {
-	while (window.isOpen()) {
+	while (window.isOpen()) 
+	{
 		handleEvents();
 		update();
 		render();
