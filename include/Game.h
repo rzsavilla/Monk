@@ -12,7 +12,6 @@ private:
 	InputHandler input;
 	sf::RenderWindow window;
 private:
-	
 	void handleEvents();
 	void update();
 	void render();

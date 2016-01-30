@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-Game::Game() : window(sf::VideoMode(1280,640), "Monk", sf::Style::Titlebar|sf::Style::Close)
+Game::Game() : window(sf::VideoMode(1280, 640), "Monk", sf::Style::Titlebar | sf::Style::Close)
 {
 	iState = 0;
 }
@@ -66,7 +66,7 @@ void Game::render()
 		window.draw(start_screen);
 	}
 	else if (iState == 1) {					//!< Game Screen
-
+		
 	}
 	else if (iState == 2) {					//!< Pause Screen
 
