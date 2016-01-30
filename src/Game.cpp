@@ -13,7 +13,8 @@ void Game::run()
 	}
 }
 
-void Game::handleEvents() {
+void Game::handleEvents() 
+{
 	sf::Event event;
 	while (window.pollEvent(event)) {
 		if (event.type == sf::Event::Closed) {
@@ -37,11 +38,25 @@ void Game::handleEvents() {
 	}
 }
 
-void Game::update() {
+void Game::update() 
+{
+	/*
+		While looping for collisions check for dragging
+	*/
 
+	// Check if the player is dragging an enemy
+	
+	/*
+		if (input.bLeftClick)
+		{
+			// Check if mouse position intersects with the sprite
+			// if so make the sprite's position that of the mouse's
+		}
+	*/
 }
 
-void Game::render() {
+void Game::render() 
+{
 	window.clear();
 	window.display();
 }
