@@ -9,7 +9,7 @@ private:
 	sf::Vector2i mousePos;
 public:
 	InputHandler();
-	bool bUp, bDown, bLeft, bRight;
+	bool bUp, bDown, bLeft, bRight, bEsc;
 	bool bLeftClick, bRightClick, bMiddleClick;
 public:
 	void updateKeyPress(sf::Keyboard::Key key, bool isPressed);

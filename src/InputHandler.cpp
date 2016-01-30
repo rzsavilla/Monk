@@ -7,6 +7,7 @@ InputHandler::InputHandler()
 	bDown = false;
 	bLeft = false;
 	bRight = false;
+	bEsc = false;
 	bLeftClick = false;
 	bRightClick = false;
 	bMiddleClick = false;
@@ -90,6 +91,7 @@ void InputHandler::updateKeyPress(sf::Keyboard::Key key, bool isPressed) {
 	case sf::Keyboard::Num9:
 		break;
 	case sf::Keyboard::Escape:
+		bEsc = isPressed;
 		break;
 	case sf::Keyboard::LControl:
 		break;

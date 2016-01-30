@@ -8,7 +8,8 @@ class Pause_Screen : public sf::Drawable
 private:
 	sf::Sprite background;
 	sf::Texture bg;
-	sf::RectangleShape Pause_Button;
+	sf::Texture pause;
+	sf::Sprite Pause_Button;
 public:
 	Pause_Screen();
 	void GetWindow(sf::Vector2u windowSize);

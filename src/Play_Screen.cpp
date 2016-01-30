@@ -8,8 +8,9 @@ Play_Screen::Play_Screen() {
 int Play_Screen::update(InputHandler& input) {
 	int iNewState = 1;
 	//Check button presses
-	if (input.bRight) {
+	if (input.bEsc) {
 		iNewState = 2;
+		input.bEsc = false;
 	}
 	else if (input.bLeft) {
 		iNewState = 3;

@@ -8,7 +8,8 @@ class Start_Screen:  public sf::Drawable
 private:
 	sf::Sprite background;
 	sf::Texture bg;
-	sf::RectangleShape Start_Button;
+	sf::Texture start;
+	sf::Sprite Start_Button;
 public:
 	Start_Screen();
 	void GetWindow(sf::Vector2u windowSize);

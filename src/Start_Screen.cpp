@@ -5,9 +5,9 @@ Start_Screen::Start_Screen()
 	bg.loadFromFile("assets\\sprites\\start_background.png");
 	background.setTexture(bg);
 
-	Start_Button.setFillColor(sf::Color::Green);
-	Start_Button.setSize(sf::Vector2f(200, 50));
-	Start_Button.setOrigin(Start_Button.getSize() / 2.f);
+	start.loadFromFile("assets\\sprites\\start_button.png");
+	Start_Button.setTexture(start);
+	Start_Button.setOrigin(sf::Vector2f(start.getSize().x / 2, start.getSize().y / 2));
 }
 
 void Start_Screen::GetWindow(sf::Vector2u windowSize) 
@@ -18,7 +18,7 @@ void Start_Screen::GetWindow(sf::Vector2u windowSize)
 int Start_Screen::update(InputHandler& input)
 {
 	int  iNewState = 0;
-	//Check button presses
+	//Check button presses, change to click start button
 	if (input.bUp) {
 		iNewState = 1;
 	}

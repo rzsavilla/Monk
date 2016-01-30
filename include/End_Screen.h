@@ -8,7 +8,8 @@ class End_Screen : public sf::Drawable
 private:
 	sf::Sprite background;
 	sf::Texture bg;
-	sf::RectangleShape End_Button;
+	sf::Texture end;
+	sf::Sprite End_Button;
 public:
 	End_Screen();
 	void GetWindow(sf::Vector2u windowSize);
