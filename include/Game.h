@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <SFML/Graphics.hpp>
+#include <SFML\Audio\Music.hpp>
 #include "Start_Screen.h"
 #include "How_Screen.h"
 #include "Pause_Screen.h"
@@ -22,6 +23,7 @@ private:
 	InputHandler input;
 	sf::RenderWindow window;
 	sf::Clock timer;
+	sf::Music music;
 private:
 	void handleEvents();
 	void update(sf::Time h);
