@@ -17,10 +17,10 @@ void How_Screen::GetWindow(sf::Vector2u windowSize)
 
 int How_Screen::update(InputHandler& input)
 {
-	int  iNewState = 3;
+	int  iNewState = 4;
 	//Check button presses
 	if (input.bDown) {
-		iNewState = 0;
+		iNewState = 1;
 	}
 
 	return iNewState;

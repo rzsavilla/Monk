@@ -9,6 +9,7 @@ Game::Game() : window(sf::VideoMode(1280, 720), "Monk", sf::Style::Titlebar | sf
 	start_screen.GetWindow(window.getSize());
 	pause_screen.GetWindow(window.getSize());
 	end_screen.GetWindow(window.getSize());
+	how_screen.GetWindow(window.getSize());
 	iState = 0;
 }
 
@@ -61,6 +62,9 @@ void Game::update(sf::Time h)
 	else if (iState == 3) {					//!< End Screen
 		iState = end_screen.update(input);
 	}
+	else if (iState == 4) {					//!< How Screen
+		iState = how_screen.update(input);
+	}
 }
 
 void Game::render() 
@@ -78,6 +82,9 @@ void Game::render()
 	}
 	else if (iState == 3) {					//!< End Screen
 		window.draw(end_screen);
+	}
+	else if (iState == 4) {					//!< How Screen
+		window.draw(how_screen);
 	}
 	window.display();
 }
