@@ -3,7 +3,7 @@
 #include <iostream>
 Spawner::Spawner() {
 	bSpawning = false;
-	//iSpawnCount = 10;
+	iSpawnCount = 10;
 }
 
 void Spawner::createPoints() {					//Generate Spawning Positions
@@ -66,13 +66,12 @@ void Spawner::spawn() {
 	createPoints();
 	bSpawning = true;
 	randGenerate();
-	std::cout << "Spawn\n";
 	for (int i = 0; i < iSpawnCount; i++) {
 		entitiesSpawned.push_back(spawnEntity);
 		entitiesSpawned.back().setPosition(Points[randomPosition[i]]);
 		entitiesSpawned.back().setTargetPos(sf::Vector2f(640, 360));
 	}
-
+	std::cout << entitiesSpawned.size() << std::endl;
 }									//Start Spawning
 
 

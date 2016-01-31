@@ -36,7 +36,6 @@ Play_Screen::Play_Screen() {
 	scoreText.setPosition(20, 10);
 
 	iWave = 1;
-	bNewSpawn = true;
 }
 
 int Play_Screen::update(sf::Time h,InputHandler& input, int& iScore) {
@@ -47,13 +46,12 @@ int Play_Screen::update(sf::Time h,InputHandler& input, int& iScore) {
 		iNewState = 2;
 		input.bEsc = false;
 	}
-	if (spawner.entitiesSpawned.size() <= 0 && bNewSpawn) {
+	
+	if (spawner.entitiesSpawned.empty()) {
 		iWave++;
-		std::cout << iWave << std::endl;
-		spawner.setSpawnCount(2 * iWave);
 		spawner.spawn();
-		bNewSpawn = false;
 	}
+	
 	//if gameover, change to end screen, 3
 	//iNewState = 3;
 
