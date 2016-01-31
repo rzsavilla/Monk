@@ -15,6 +15,11 @@ Game::Game() : window(sf::VideoMode(1280, 720), "Monk", sf::Style::Titlebar | sf
 
 void Game::run()
 {
+	// Setup music
+	music.setLoop(true);
+	if(music.openFromFile("assets\\audio\\monastry.ogg"));
+		music.play();
+
 	while (window.isOpen()) 
 	{
 		handleEvents();
