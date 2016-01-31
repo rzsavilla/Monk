@@ -1,7 +1,7 @@
 #include "Play_Screen.h"
 #include <iostream>
 Play_Screen::Play_Screen() {
-	bg.loadFromFile("assets\\sprites\\background.png");
+	bg.loadFromFile("assets\\screens\\background.png");
 	background.setTexture(bg);
 
 	texture.loadFromFile("assets/sprites/monk.png");
