@@ -70,7 +70,9 @@ void Spawner::spawn() {
 void Spawner::collideMonks(std::vector<Entity>& monks) {
 	for (int i = 0; i < monks.size(); i++) {
 		for (int j = 0; j < entitiesSpawned.size(); j++) {
-			entitiesSpawned.at(j).impulseCollision(monks.at(i));
+			bool collided = entitiesSpawned.at(j).impulseCollision(monks.at(i));
+			if (collided)
+				monks.erase(monks.begin() + i);
 		}
 	}
 }

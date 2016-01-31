@@ -5,7 +5,7 @@ MonkGroup::MonkGroup() {
 	monkSpawn.setTexture(texture);
 	monkSpawn.setSpeed(100);
 	monkSpawn.setAcceleration(1.0f);
-	monkSpawn.setMaxSpeed(100);
+	monkSpawn.setMaxSpeed(0);
 	monkSpawn.setRadius(monkSpawn.getGlobalBounds().width / 2);
 	monkSpawn.setOrigin(monkSpawn.getRadius(), monkSpawn.getRadius());
 	monkSpawn.setScale(2.f, 2);
@@ -63,9 +63,8 @@ void  MonkGroup::updateMoveT() {
 	}
 }
 
-void MonkGroup::update(sf::Time h) {
-
-	//std::cout << Monks.at(1).getTargetPos().x << std::endl;
+void MonkGroup::update(sf::Time h) 
+{
 	for (int i = 0; i < Monks.size(); i++) {
 		Monks[i].update(h);
 		Monks[i].rotate(100.f * h.asSeconds());
