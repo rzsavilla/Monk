@@ -27,7 +27,6 @@ private:
 public:
 	std::vector<Entity> Monks;
 	MonkGroup::MonkGroup();
-	MonkGroup(sf::Vector2f position, int NumberOfMonks, float fRadius);							//Constructor
 
 	void setRadius(float radius);
 	void setMonkCount(int Num);

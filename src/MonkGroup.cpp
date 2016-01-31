@@ -15,15 +15,15 @@ MonkGroup::MonkGroup() {
 	//createMonks();
 }
 
-MonkGroup::MonkGroup(sf::Vector2f position, int NumberOfMonks, float fRadius) {
-
-}
-
 void MonkGroup::createMonks() {
 	float fdetlaT = (2 * M_PI) / (float)(iMonkNum);
 	float t = 0;
 	for (int i = 0; i < iMonkNum; i++) {
 		sf::Vector2f targetPosition = sf::Vector2f(fRadius * cos(t) + Position.x, fRadius * sin(t) + Position.y);
+		int rotation = 180 - (i * -36);
+		if (rotation > 360) 
+			rotation -= 360;
+		monkSpawn.rotate(rotation);
 		//std::cout << targetPosition.y << std::endl;
 		Monks.push_back(monkSpawn);
 		Monks.back().setPosition(targetPosition);		//Spawns monk onto position
