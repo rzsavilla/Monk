@@ -18,9 +18,16 @@ void Start_Screen::GetWindow(sf::Vector2u windowSize)
 int Start_Screen::update(InputHandler& input)
 {
 	int  iNewState = 0;
-	//Check button presses, change to click start button
-	if (input.bUp) {
-		iNewState = 4;
+
+	if (input.bLeftClick) {
+		if (input.mousePos.x > Start_Button.getPosition().x - (start.getSize().x / 2) || input.mousePos.x < Start_Button.getPosition().x + (start.getSize().x / 2))
+		{
+			if (input.mousePos.y > Start_Button.getPosition().y - (start.getSize().y / 2) || input.mousePos.y < Start_Button.getPosition().y + (start.getSize().y / 2))
+			{
+				iNewState = 4;
+				input.bLeftClick = false;
+			}
+		}
 	}
 
 	return iNewState;
