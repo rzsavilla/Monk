@@ -72,8 +72,13 @@ void Spawner::collideMonks(std::vector<Entity>& monks) {
 	if (monks.size() > 0) {
 		for (int i = 0; i < entitiesSpawned.size(); i++) {
 			for (int j = 0; j < monks.size(); j++) {
-				if (entitiesSpawned.at(i).Collides(monks.at(j))) {
-					monks.erase(monks.begin() + i);
+				if (!monks.empty()) {
+					if (!(i > monks.size() - 1))
+					{
+						if (entitiesSpawned.at(i).Collides(monks.at(j))) {
+							monks.erase(monks.begin() + i);
+						}
+					}
 				}
 			}
 		}
