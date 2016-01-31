@@ -72,8 +72,7 @@ void Spawner::collideMonks(std::vector<Entity>& monks) {
 	if (monks.size() > 0) {
 		for (int i = 0; i < entitiesSpawned.size(); i++) {
 			for (int j = 0; j < monks.size(); j++) {
-				bool collided = entitiesSpawned.at(i).impulseCollision(monks.at(j));
-				if (collided) {
+				if (entitiesSpawned.at(i).Collides(monks.at(j))) {
 					monks.erase(monks.begin() + i);
 				}
 			}
