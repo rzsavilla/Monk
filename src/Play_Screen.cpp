@@ -2,10 +2,10 @@
 #include <iostream>
 
 Play_Screen::Play_Screen() {
-	bg.loadFromFile("assets\\sprites\\background.png");
+	bg.loadFromFile("assets\\screens\\game_background.png");
 	background.setTexture(bg);
 
-	texture.loadFromFile("assets/sprites/monk.png");
+	texture.loadFromFile("assets/sprites/enemy.png");
 
 	monk.setTexture(texture);
 	monk.setPosition(640, 320);
@@ -48,6 +48,7 @@ int Play_Screen::update(sf::Time h,InputHandler& input) {
 
 void Play_Screen::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
+	target.draw(background);
 	target.draw(monk_Group, states);
 	target.draw(spawner, states);
 	//target.draw(monk, states);

@@ -1,4 +1,5 @@
 #include "Spawner.h"
+#include "InputHandler.h"
 #include <iostream>
 Spawner::Spawner() {
 	bSpawning = false;
@@ -30,11 +31,25 @@ void Spawner::setSpawn(Entity& entity) {
 	spawnEntity = entity;
 }
 void Spawner::update(sf::Time h, InputHandler& input) {
+	// Check for clicks
+	std::shared_ptr<sf::RectangleShape> pMouseArea = nullptr;
+	if (input.bLeftClick)
+	{
+		pMouseArea = std::shared_ptr<sf::RectangleShape>(new sf::RectangleShape);
+		pMouseArea->setSize(sf::Vector2f(5, 5));
+		sf::Vector2i mousePosition = input.mousePos;
+		pMouseArea->setPosition(mousePosition.x, mousePosition.y);
+	}
 
-	
-	//UpdateVelocity
+	// Update velocity
 	for (int i = 0; i < entitiesSpawned.size(); i++) {
 		entitiesSpawned.at(i).update(h);
+		// Check for kills
+		if (pMouseArea != nullptr && entitiesSpawned.at(i).getGlobalBounds().intersects(pMouseArea->getGlobalBounds()))
+		{
+			// Kill
+			entitiesSpawned.erase(entitiesSpawned.begin() + i);
+		}
 	}
 }
 

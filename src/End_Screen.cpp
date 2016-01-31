@@ -2,7 +2,7 @@
 
 End_Screen::End_Screen()
 {
-	bg.loadFromFile("assets\\sprites\\end_background.png");
+	bg.loadFromFile("assets\\screens\\end_background.png");
 	background.setTexture(bg);
 
 	end.loadFromFile("assets\\sprites\\end_button.png");

@@ -2,7 +2,7 @@
 
 Pause_Screen::Pause_Screen()
 {
-	bg.loadFromFile("assets\\sprites\\pause_background.png");
+	bg.loadFromFile("assets\\screens\\pause_background.png");
 	background.setTexture(bg);
 
 	pause.loadFromFile("assets\\sprites\\continue_button.png");
