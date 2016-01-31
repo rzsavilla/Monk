@@ -42,6 +42,11 @@ int Play_Screen::update(sf::Time h,InputHandler& input) {
 	//if gameover, change to end screen, 3
 	//iNewState = 3;
 
+	//REMOVE the input check here, once proper game over check is made
+	if (input.bRight) {
+		iNewState = 3;
+	}
+
 	monk_Group.updateMoveT();
 	spawner.updateMoveTo();
 	//Set/Changes velocity
