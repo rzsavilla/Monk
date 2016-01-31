@@ -20,9 +20,9 @@ int How_Screen::update(InputHandler& input)
 	int  iNewState = 4;
 
 	if (input.bLeftClick) {
-		if (input.mousePos.x > Next_Button.getPosition().x - (next.getSize().x / 2) || input.mousePos.x < Next_Button.getPosition().x + (next.getSize().x / 2))
+		if (input.mousePos.x > Next_Button.getPosition().x - (next.getSize().x / 2) && input.mousePos.x < Next_Button.getPosition().x + (next.getSize().x / 2))
 		{
-			if (input.mousePos.y > Next_Button.getPosition().y - (next.getSize().y / 2) || input.mousePos.y < Next_Button.getPosition().y + (next.getSize().y / 2))
+			if (input.mousePos.y > Next_Button.getPosition().y - (next.getSize().y / 2) && input.mousePos.y < Next_Button.getPosition().y + (next.getSize().y / 2))
 			{
 				iNewState = 1;
 				input.bLeftClick = false;

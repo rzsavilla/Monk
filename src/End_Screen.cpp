@@ -24,9 +24,9 @@ int End_Screen::update(InputHandler& input, int& score)
 	int  iNewState = 3;
 
 	if (input.bLeftClick) {
-		if (input.mousePos.x > End_Button.getPosition().x - (end.getSize().x / 2) || input.mousePos.x < End_Button.getPosition().x + (end.getSize().x / 2))
+		if (input.mousePos.x > End_Button.getPosition().x - (end.getSize().x / 2) && input.mousePos.x < End_Button.getPosition().x + (end.getSize().x / 2))
 		{
-			if (input.mousePos.y > End_Button.getPosition().y - (end.getSize().y / 2) || input.mousePos.y < End_Button.getPosition().y + (end.getSize().y / 2))
+			if (input.mousePos.y > End_Button.getPosition().y - (end.getSize().y / 2) && input.mousePos.y < End_Button.getPosition().y + (end.getSize().y / 2))
 			{
 				iNewState = 0;
 				input.bLeftClick = false;
