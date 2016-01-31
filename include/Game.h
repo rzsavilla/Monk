@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Start_Screen.h"
+#include "How_Screen.h"
 #include "Pause_Screen.h"
 #include "End_Screen.h"
 #include "Play_Screen.h"
@@ -17,6 +18,7 @@ private:
 	Play_Screen play_screen;					// State 1
 	Pause_Screen pause_screen;					// State 2
 	End_Screen end_screen;						// State 3
+	How_Screen how_screen;						// State 4
 	InputHandler input;
 	sf::RenderWindow window;
 	sf::Clock timer;

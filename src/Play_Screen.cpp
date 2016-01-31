@@ -32,6 +32,16 @@ Play_Screen::Play_Screen() {
 
 int Play_Screen::update(sf::Time h,InputHandler& input) {
 	int iNewState = 1;
+
+	//Check button presses
+	if (input.bEsc) {
+		iNewState = 2;
+		input.bEsc = false;
+	}
+
+	//if gameover, change to end screen, 3
+	//iNewState = 3;
+
 	monk_Group.updateMoveT();
 	spawner.updateMoveTo();
 	//Set/Changes velocity
