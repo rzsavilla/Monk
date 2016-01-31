@@ -1,23 +1,25 @@
 #ifndef ENTITY_H
 #define ENTITY_H
-
-
-#include <SFML/System/Time.hpp>
-#include <SFML/Graphics/Sprite.hpp>
 #include "Moveable.h"
-#include "Collision2D.h"
-#include "Health.h"
-#include "Maths2D.h"
+#include <SFML/Graphics/CircleShape.hpp>
 
-class Entity : public Moveable, public sf::Sprite, public Collision2D, public Health
+class Entity : public sf::Sprite, public Moveable
 {
+private:
+	float fe;					//Coefficient of resitution
+	float fRadius;
 public:
 	Entity();
 	void update(sf::Time h);
+	sf::Vector2f moveTowards(sf::Vector2f target);
+	bool Collides(Entity other);			//Check collision with circle
+	bool impulseCollision(Entity& other);
+	void setE(float e){
+		fe = e;
+	}
 
-	bool impulseCollision(Entity& other);					//Applies impulse collision
-private:
-	
+	void setRadius(float Radius) { fRadius = Radius; }
+	float getRadius() { return fRadius; }
 };
 
 #endif

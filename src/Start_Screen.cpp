@@ -2,7 +2,7 @@
 
 Start_Screen::Start_Screen()
 {
-	bg.loadFromFile("assets\\screens\\start_background.png");
+	bg.loadFromFile("assets\\sprites\\start_background.png");
 	background.setTexture(bg);
 
 	start.loadFromFile("assets\\sprites\\start_button.png");

@@ -1,7 +1,5 @@
 #include "Spawner.h"
-#include "InputHandler.h"
 #include <iostream>
-
 Spawner::Spawner() {
 	bSpawning = false;
 	iSpawnCount = 10;
@@ -32,23 +30,11 @@ void Spawner::setSpawn(Entity& entity) {
 	spawnEntity = entity;
 }
 void Spawner::update(sf::Time h, InputHandler& input) {
-	// Check for clicks
-	std::shared_ptr<sf::RectangleShape> pMouseArea = nullptr;
-	if (input.bLeftClick)
-	{
-		pMouseArea = std::shared_ptr<sf::RectangleShape>(new sf::RectangleShape());
-		pMouseArea->setSize(sf::Vector2f(5, 5));
-		sf::Vector2i mousePosition = input.mousePos;
-		pMouseArea->setPosition(mousePosition.x, mousePosition.y);
-	}
 
-	for (int i = 0; i < entitiesSpawned.size(); i++)
-	{
+	
+	//UpdateVelocity
+	for (int i = 0; i < entitiesSpawned.size(); i++) {
 		entitiesSpawned.at(i).update(h);
-		// Check for clicks and drags
-		if (pMouseArea != nullptr && entitiesSpawned.at(i).getGlobalBounds().intersects(pMouseArea->getGlobalBounds()))
-			// Drag entity
-			entitiesSpawned.at(i).setPosition(pMouseArea->getPosition());
 	}
 }
 
@@ -56,13 +42,38 @@ void Spawner::spawn() {
 	createPoints();
 	bSpawning = true;
 	randGenerate();
-	
+	std::cout << "Spawn\n";
 	for (int i = 0; i < iSpawnCount; i++) {
 		entitiesSpawned.push_back(spawnEntity);
 		entitiesSpawned.back().setPosition(Points[randomPosition[i]]);
+		entitiesSpawned.back().setTargetPos(sf::Vector2f(640, 360));
 	}
-	
+
 }									//Start Spawning
+
+
+void Spawner::collideMonks(std::vector<Entity>& monks) {
+	for (int i = 0; i < monks.size(); i++) {
+		for (int j = 0; j < entitiesSpawned.size(); j++) {
+			entitiesSpawned.at(j).impulseCollision(monks.at(i));
+		}
+	}
+}
+void Spawner::updateMoveTo() {
+	for (int i = 0; i < entitiesSpawned.size(); i++) {
+		entitiesSpawned[i].moveTowards(entitiesSpawned.at(i).getTargetPos());
+	}
+}
+
+void Spawner::selfCollide() {
+	for (int i = 0; i < entitiesSpawned.size(); i++) {
+		for (int j = i + 1; j < entitiesSpawned.size(); j++) {
+			if (entitiesSpawned.at(i).impulseCollision(entitiesSpawned.at(j))) {
+				std::cout << "Collision\n";
+			}
+		}
+	}
+}
 bool Spawner::isFinished() {
 	if (bSpawning) {
 		return false;
@@ -74,8 +85,8 @@ bool Spawner::isFinished() {
 
 void Spawner::randGenerate() {
 	srand(time(NULL)); //always seed your RNG before using it
-	
-	for (int i = 0; i<iSpawnCount ; i++)								//generate random numbers:
+
+	for (int i = 0; i<iSpawnCount; i++)								//generate random numbers:
 	{
 		bool check;														//variable to check or number is already used
 		int n;															//variable to store the number in
@@ -97,7 +108,7 @@ void Spawner::randGenerate() {
 }
 
 void Spawner::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-	for (int i = 0; i < entitiesSpawned.size();i++) {
-		target.draw(entitiesSpawned[i],states);
+	for (int i = 0; i < entitiesSpawned.size(); i++) {
+		target.draw(entitiesSpawned[i], states);
 	}
 }

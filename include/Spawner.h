@@ -7,13 +7,14 @@
 #include <stdlib.h>
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
+#include <vector>
 
 class InputHandler;
 
 class Spawner: public sf::Drawable
 {
 private:
-	std::vector<Entity> entitiesSpawned;
+	
 	float fRadius;
 	int iNumPoints;									//Number of positions to spawn from
 	sf::Vector2f position;							//Position of Spawner/Origin
@@ -26,8 +27,9 @@ private:
 
 	void randGenerate();							//Generate list of random numbers
 	std::vector<int> randomPosition;
-
+	std::vector<Entity> entitiesSpawned;
 public:
+	
 	Spawner();
 	void setPoints(int num);
 	void setRadius(float Radius);
@@ -35,6 +37,10 @@ public:
 	void setSpawn(Entity& entity);
 	void update(sf::Time h, InputHandler& input);
 	void spawn();									//Start Spawning
+
+	void collideMonks(std::vector<Entity>& monks);	//IMpulse Collision with monks
+	void updateMoveTo();
+	void selfCollide();
 	bool isFinished();
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };

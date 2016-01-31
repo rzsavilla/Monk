@@ -1,47 +1,56 @@
 #include "Play_Screen.h"
 #include <iostream>
+
 Play_Screen::Play_Screen() {
-	bg.loadFromFile("assets\\screens\\background.png");
+	bg.loadFromFile("assets\\sprites\\background.png");
 	background.setTexture(bg);
 
 	texture.loadFromFile("assets/sprites/monk.png");
+
+	monk.setTexture(texture);
+	monk.setPosition(640, 320);
+	monk.setSpeed(100.f);
+	monk.setMaxSpeed(100.f);
+	monk.setRadius(monk.getGlobalBounds().width / 2);
+	monk.setOrigin(monk.getGlobalBounds().width / 2, monk.getGlobalBounds().width / 2);
+
 	enemy.setTexture(texture);
-	enemy.SetSpeed(100.f);
-	enemy.SetMaxSpeed(100.f);
-	enemy.SetTarget(sf::Vector2f(100, 100));
-	enemy.setPosition(100.f, 100.f);
+	enemy.setPosition(640, 500);
+	enemy.setSpeed(100.f);
+	enemy.setMaxSpeed(100.f);
+	enemy.setRadius(50.f);
 
-	//////Spawner Test
-	spawner.setRadius(100);
-	spawner.setPoints(10);
-	spawner.setPosition(sf::Vector2f(sf::Vector2f(1280 / 2,720 / 2)));
-	spawner.setSpawn(enemy);
+	monk_Group.setMonkCount(10);
+
+	spawner.setPoints(20);
+	spawner.setRadius(720);
+	spawner.setSpawn(monk);
+	
+	spawner.setPosition(sf::Vector2f(640, 360));
 	spawner.spawn();
-
-	/////////Monks Group Test
 }
 
-int Play_Screen::update(sf::Time h,InputHandler& input)
-{
-	spawner.update(h, input);
-	monkGroup.update(h);
+int Play_Screen::update(sf::Time h,InputHandler& input) {
 	int iNewState = 1;
-	//Check button presses
-	if (input.bEsc) {
-		iNewState = 2;
-		input.bEsc = false;
-	}
-	else if (input.bLeft) {
-		iNewState = 3;
-	}
+	monk_Group.updateMoveT();
+	spawner.updateMoveTo();
+	//Set/Changes velocity
+	monk_Group.selfCollide();
+	
+	spawner.selfCollide();
+	spawner.collideMonks(monk_Group.Monks);
 
+	//Move using velocity
+	spawner.update(h,input);
+	monk_Group.update(h);
 	return iNewState;
 }
 
 void Play_Screen::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	//target.draw(enemy,states);
-	target.draw(monkGroup, states);
+	target.draw(monk_Group, states);
 	target.draw(spawner, states);
-	//target.draw(background, states);
+	//target.draw(monk, states);
+	//target.draw(enemy, states);
+	
 }

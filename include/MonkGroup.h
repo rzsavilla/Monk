@@ -8,29 +8,35 @@
 #include <SFML/Graphics.hpp>
 
 /*
-	Group of Monks
-	Will handle the group of monks
+Group of Monks
+Will handle the group of monks
 */
 
-class MonkGroup: public sf::Drawable 
+class MonkGroup : public sf::Drawable
 {
 private:
-	Entity monk;
-	sf::Texture monkTexture;				//Texture
+	Entity monkSpawn;
+	sf::Texture texture;
 	sf::Vector2f Position;					//Centre of circle
 	int iMonkNum;							//Number of monks in a circle
 	float fRadius;
 	void createMonks();					//Positions monks around centre position, monks will move towards target
-	std::vector<Entity> Monks;
+	
 public:
+	std::vector<Entity> Monks;
 	MonkGroup::MonkGroup();
 	MonkGroup(sf::Vector2f position, int NumberOfMonks, float fRadius);							//Constructor
 
 	void setRadius(float radius);
 	void setMonkCount(int Num);
 	void setPosition(sf::Vector2f pos);
+
+	void selfCollide();
+	void updateMoveT();
+	void allImpulseCollide(Entity& entity);		//Check group collision with object
+
 	void update(sf::Time h);
-	
+
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 

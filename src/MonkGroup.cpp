@@ -1,13 +1,16 @@
 #include "MonkGroup.h"
-
+#include <iostream>
 MonkGroup::MonkGroup() {
-	monkTexture.loadFromFile("assets/sprites/monk.png");
-	monk.setTexture(monkTexture);
-	monk.SetSpeed(0);
-	monk.SetAccel(0.0f);
-	monk.SetMaxSpeed(0);
+	texture.loadFromFile("assets/sprites/monk.png");
+	monkSpawn.setTexture(texture);
+	monkSpawn.setSpeed(100);
+	monkSpawn.setAcceleration(1.0f);
+	monkSpawn.setMaxSpeed(100);
+	monkSpawn.setRadius(monkSpawn.getGlobalBounds().width / 2);
+	monkSpawn.setOrigin(monkSpawn.getRadius(), monkSpawn.getRadius());
+	monkSpawn.setScale(2.f, 2);
 	iMonkNum = 8;
-	fRadius = 100;
+	fRadius = 120;
 	Position = sf::Vector2f(640, 360);
 	//createMonks();
 }
@@ -22,10 +25,10 @@ void MonkGroup::createMonks() {
 	for (int i = 0; i < iMonkNum; i++) {
 		sf::Vector2f targetPosition = sf::Vector2f(fRadius * cos(t) + Position.x, fRadius * sin(t) + Position.y);
 		//std::cout << targetPosition.y << std::endl;
-		Monks.push_back(monk);
+		Monks.push_back(monkSpawn);
 		Monks.back().setPosition(targetPosition);		//Spawns monk onto position
-		Monks.back().SetTarget(targetPosition + sf::Vector2f(50.f,50.f));			//Monks will move towards target		
-		//Monks.back().SetTarget(sf::Vector2f(100,300.f));			//Monks will move towards target
+		Monks.back().setTargetPos(targetPosition + sf::Vector2f(0.1,0.1));			//Monks will move towards target		
+		//Monks.back().setTargetPos(sf::Vector2f(100,300.f));			//Monks will move towards target
 		t += fdetlaT;
 	}
 }
@@ -45,16 +48,27 @@ void MonkGroup::setPosition(sf::Vector2f position) {
 	Position = position;
 }
 
+void  MonkGroup::selfCollide() {
+	for (int i = 0; i < Monks.size(); i++) {
+		for (int j = i + 1; j < Monks.size(); j++) {
+			if (Monks.at(i).impulseCollision(Monks.at(j))) {
+				//std::cout << "Collision\n";
+			}
+		}
+	}
+}
+void  MonkGroup::updateMoveT() {
+	for (int i = 0; i < Monks.size(); i++) {
+		Monks.at(i).moveTowards(Monks.at(i).getTargetPos());
+	}
+}
+
 void MonkGroup::update(sf::Time h) {
+
+	//std::cout << Monks.at(1).getTargetPos().x << std::endl;
 	for (int i = 0; i < Monks.size(); i++) {
 		Monks[i].update(h);
-	}
-	for (int i = 0; i < Monks.size(); i++) {
-		for (int j = 1; j < Monks.size(); j++) {
-			//if (Monks.at(i).impulseCollision(Monks.at(j))) {
-				//std::cout << "Collision\n";
-			//}
-		}
+		Monks[i].rotate(100.f * h.asSeconds());
 	}
 }
 
