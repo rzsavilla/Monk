@@ -17,7 +17,6 @@ public:
 	Moveable();
 	void SetPos(sf::Vector2f pos) {
 		vPos = pos;
-		std::cout << pos.x << std::endl;
 	}
 	void SetSpeed(float speed);
 	void SetMaxSpeed(float maxSpeed);

@@ -21,8 +21,9 @@ Play_Screen::Play_Screen() {
 	/////////Monks Group Test
 }
 
-int Play_Screen::update(sf::Time h,InputHandler& input) {
-	spawner.update(h);
+int Play_Screen::update(sf::Time h,InputHandler& input)
+{
+	spawner.update(h, input);
 	monkGroup.update(h);
 	int iNewState = 1;
 	//Check button presses

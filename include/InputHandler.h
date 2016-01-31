@@ -5,13 +5,11 @@
 
 class InputHandler
 {
-private:
-	sf::Vector2i mousePos;
 public:
+	sf::Vector2i mousePos;
 	InputHandler();
 	bool bUp, bDown, bLeft, bRight, bEsc;
 	bool bLeftClick, bRightClick, bMiddleClick;
-public:
 	void updateKeyPress(sf::Keyboard::Key key, bool isPressed);
 	void updateMousePress(sf::Mouse::Button button, bool isPressed);
 	void updateMousePos(sf::Vector2i position);

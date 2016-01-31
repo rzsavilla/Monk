@@ -3,9 +3,12 @@
 
 #define _USE_MATH_DEFINES
 
+#include <memory>
 #include <stdlib.h>
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
+
+class InputHandler;
 
 class Spawner: public sf::Drawable
 {
@@ -30,7 +33,7 @@ public:
 	void setRadius(float Radius);
 	void setPosition(sf::Vector2f position);
 	void setSpawn(Entity& entity);
-	void update(sf::Time h);
+	void update(sf::Time h, InputHandler& input);
 	void spawn();									//Start Spawning
 	bool isFinished();
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;

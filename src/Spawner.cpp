@@ -1,5 +1,7 @@
 #include "Spawner.h"
+#include "InputHandler.h"
 #include <iostream>
+
 Spawner::Spawner() {
 	bSpawning = false;
 	iSpawnCount = 10;
@@ -29,9 +31,24 @@ void Spawner::setPosition(sf::Vector2f Position) {
 void Spawner::setSpawn(Entity& entity) {
 	spawnEntity = entity;
 }
-void Spawner::update(sf::Time h) {
-	for (int i = 0; i < entitiesSpawned.size(); i++) {
+void Spawner::update(sf::Time h, InputHandler& input) {
+	// Check for clicks
+	std::shared_ptr<sf::RectangleShape> pMouseArea = nullptr;
+	if (input.bLeftClick)
+	{
+		pMouseArea = std::shared_ptr<sf::RectangleShape>(new sf::RectangleShape());
+		pMouseArea->setSize(sf::Vector2f(5, 5));
+		sf::Vector2i mousePosition = input.mousePos;
+		pMouseArea->setPosition(mousePosition.x, mousePosition.y);
+	}
+
+	for (int i = 0; i < entitiesSpawned.size(); i++)
+	{
 		entitiesSpawned.at(i).update(h);
+		// Check for clicks and drags
+		if (pMouseArea != nullptr && entitiesSpawned.at(i).getGlobalBounds().intersects(pMouseArea->getGlobalBounds()))
+			// Drag entity
+			entitiesSpawned.at(i).setPosition(pMouseArea->getPosition());
 	}
 }
 
