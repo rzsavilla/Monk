@@ -1,4 +1,5 @@
 #include "Play_Screen.h"
+#include <SFML/Graphics.hpp>
 #include <iostream>
 
 Play_Screen::Play_Screen() {
@@ -28,9 +29,13 @@ Play_Screen::Play_Screen() {
 		
 	spawner.setPosition(sf::Vector2f(640, 360));
 	spawner.spawn();
+
+	font.loadFromFile("assets/fonts/times.ttf");
+	scoreText.setFont(font);
+	scoreText.setPosition(20, 10);
 }
 
-int Play_Screen::update(sf::Time h,InputHandler& input) {
+int Play_Screen::update(sf::Time h,InputHandler& input, int& iScore) {
 	int iNewState = 1;
 
 	//Check button presses
@@ -55,8 +60,11 @@ int Play_Screen::update(sf::Time h,InputHandler& input) {
 	spawner.selfCollide();
 	spawner.collideMonks(monk_Group.Monks);
 
+	// Update score
+	scoreText.setString("Score: " + std::to_string(iScore));
+
 	//Move using velocity
-	spawner.update(h,input);
+	spawner.update(h,input,iScore);
 	monk_Group.update(h);
 	return iNewState;
 }
@@ -66,6 +74,7 @@ void Play_Screen::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(background);
 	target.draw(monk_Group, states);
 	target.draw(spawner, states);
+	target.draw(scoreText);
 	//target.draw(monk, states);
 	//target.draw(enemy, states);
 	

@@ -31,7 +31,7 @@ void Spawner::setSpawn(Entity& entity) {
 	spawnEntity = entity;
 }
 
-void Spawner::update(sf::Time h, InputHandler& input) {
+void Spawner::update(sf::Time h, InputHandler& input, int& score) {
 	// Check for clicks
 	std::shared_ptr<sf::RectangleShape> pMouseArea = nullptr;
 	if (input.bLeftClick)
@@ -50,6 +50,8 @@ void Spawner::update(sf::Time h, InputHandler& input) {
 		{
 			// Kill
 			entitiesSpawned.erase(entitiesSpawned.begin() + i);
+			// Update score
+			score += 10;
 		}
 	}
 }

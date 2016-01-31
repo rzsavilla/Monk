@@ -36,7 +36,7 @@ public:
 	void setRadius(float Radius);
 	void setPosition(sf::Vector2f position);
 	void setSpawn(Entity& entity);
-	void update(sf::Time h, InputHandler& input);
+	void update(sf::Time h, InputHandler& input, int& score);
 	void spawn();									//Start Spawning
 
 	void collideMonks(std::vector<Entity>& monks);	//IMpulse Collision with monks

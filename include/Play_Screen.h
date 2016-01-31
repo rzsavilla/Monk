@@ -40,18 +40,18 @@ public:
 class Play_Screen : public sf::Drawable
 {
 private:
-	int iScore;
-
 	Entity monk;
 	Entity enemy;
 	MonkGroup monk_Group;
+	sf::Font font;
 	sf::Texture texture;
 	sf::Texture bg;
+	sf::Text scoreText;
 	sf::Sprite background;
 	Spawner spawner;
 public:
 	Play_Screen();
-	int update(sf::Time h, InputHandler& input);
+	int update(sf::Time h, InputHandler& input, int& iScore);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	void initialize();
 };

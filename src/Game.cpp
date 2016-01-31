@@ -59,13 +59,13 @@ void Game::update(sf::Time h)
 		iState = start_screen.update(input);
 	}
 	else if (iState == 1) {					//!< Game Screen
-		iState = play_screen.update(h,input);
+		iState = play_screen.update(h, input, iScore);
 	}
 	else if (iState == 2) {					//!< Pause Screen
 		iState = pause_screen.update(input);
 	}
 	else if (iState == 3) {					//!< End Screen
-		iState = end_screen.update(input);
+		iState = end_screen.update(input, iScore);
 	}
 	else if (iState == 4) {					//!< How Screen
 		iState = how_screen.update(input);

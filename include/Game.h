@@ -25,6 +25,7 @@ private:
 	sf::Clock timer;
 	sf::Music music;
 private:
+	int iScore;
 	void handleEvents();
 	void update(sf::Time h);
 	void render();

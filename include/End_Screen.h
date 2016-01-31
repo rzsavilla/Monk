@@ -6,6 +6,8 @@
 class End_Screen : public sf::Drawable
 {
 private:
+	sf::Font font;
+	sf::Text scoreText;
 	sf::Sprite background;
 	sf::Texture bg;
 	sf::Texture end;
@@ -13,7 +15,7 @@ private:
 public:
 	End_Screen();
 	void GetWindow(sf::Vector2u windowSize);
-	int update(InputHandler& input);
+	int update(InputHandler& input, int& score);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 
