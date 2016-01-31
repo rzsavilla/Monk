@@ -22,10 +22,18 @@ void End_Screen::GetWindow(sf::Vector2u windowSize)
 int End_Screen::update(InputHandler& input, int& score)
 {
 	int  iNewState = 3;
-	//Check button presses
-	if (input.bDown) {
-		iNewState = 0;
+
+	if (input.bLeftClick) {
+		if (input.mousePos.x > End_Button.getPosition().x - (end.getSize().x / 2) || input.mousePos.x < End_Button.getPosition().x + (end.getSize().x / 2))
+		{
+			if (input.mousePos.y > End_Button.getPosition().y - (end.getSize().y / 2) || input.mousePos.y < End_Button.getPosition().y + (end.getSize().y / 2))
+			{
+				iNewState = 0;
+				input.bLeftClick = false;
+			}
+		}
 	}
+
 	scoreText.setString("Score: " + std::to_string(score));
 	return iNewState;
 }
