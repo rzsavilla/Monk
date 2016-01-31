@@ -22,6 +22,8 @@ private:
 	float fRadius;
 	void createMonks();					//Positions monks around centre position, monks will move towards target
 	
+
+	void RotateMonks(float fDegrees);
 public:
 	std::vector<Entity> Monks;
 	MonkGroup::MonkGroup();

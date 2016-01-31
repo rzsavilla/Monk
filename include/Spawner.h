@@ -28,6 +28,7 @@ private:
 	void randGenerate();							//Generate list of random numbers
 	std::vector<int> randomPosition;
 	std::vector<Entity> entitiesSpawned;
+
 public:
 	
 	Spawner();

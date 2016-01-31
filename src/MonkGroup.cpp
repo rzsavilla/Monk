@@ -33,6 +33,18 @@ void MonkGroup::createMonks() {
 	}
 }
 
+void MonkGroup::RotateMonks(float fDegrees) {
+	float radian = fDegrees * (M_PI / 180);
+	
+	for (int i = 0; i < Monks.size(); i++) {
+		sf::Vector2f centre = Monks.at(i).getPosition();
+		//Monks.at(i).setPosition(Monks.at(i).getPosition() - centre);			//Move To Origin
+		Monks.at(i).setPosition(sf::Vector2f(cos(radian) * Monks.at(i).getPosition().x + -sin(radian) * Monks.at(i).getPosition().y,
+											sin(radian) * Monks.at(i).getPosition().x + cos(radian) * Monks.at(i).getPosition().y));
+		//Monks.at(i).setPosition(Monks.at(i).getPosition() + centre);			//Move Back
+	}
+}
+
 void MonkGroup::setRadius(float radius) {
 	fRadius = radius;
 }
@@ -65,6 +77,7 @@ void  MonkGroup::updateMoveT() {
 
 void MonkGroup::update(sf::Time h) 
 {
+	RotateMonks(100);
 	for (int i = 0; i < Monks.size(); i++) {
 		Monks[i].update(h);
 		Monks[i].rotate(100.f * h.asSeconds());

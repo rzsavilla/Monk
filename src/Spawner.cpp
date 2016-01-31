@@ -30,6 +30,7 @@ void Spawner::setPosition(sf::Vector2f Position) {
 void Spawner::setSpawn(Entity& entity) {
 	spawnEntity = entity;
 }
+
 void Spawner::update(sf::Time h, InputHandler& input) {
 	// Check for clicks
 	std::shared_ptr<sf::RectangleShape> pMouseArea = nullptr;
@@ -68,11 +69,14 @@ void Spawner::spawn() {
 
 
 void Spawner::collideMonks(std::vector<Entity>& monks) {
-	for (int i = 0; i < monks.size(); i++) {
-		for (int j = 0; j < entitiesSpawned.size(); j++) {
-			bool collided = entitiesSpawned.at(j).impulseCollision(monks.at(i));
-			if (collided)
-				monks.erase(monks.begin() + i);
+	if (monks.size() > 0) {
+		for (int i = 0; i < entitiesSpawned.size(); i++) {
+			for (int j = 0; j < monks.size(); j++) {
+				bool collided = entitiesSpawned.at(i).impulseCollision(monks.at(j));
+				if (collided) {
+					monks.erase(monks.begin() + i);
+				}
+			}
 		}
 	}
 }
