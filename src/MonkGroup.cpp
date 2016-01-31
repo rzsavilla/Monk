@@ -3,7 +3,7 @@
 MonkGroup::MonkGroup() {
 	texture.loadFromFile("assets/sprites/monk.png");
 	monkSpawn.setTexture(texture);
-	monkSpawn.setSpeed(100);
+	monkSpawn.setSpeed(0);
 	monkSpawn.setAcceleration(1.0f);
 	monkSpawn.setMaxSpeed(0);
 	monkSpawn.setRadius(monkSpawn.getGlobalBounds().width / 2);
@@ -34,14 +34,25 @@ void MonkGroup::createMonks() {
 }
 
 void MonkGroup::RotateMonks(float fDegrees) {
-	float radian = fDegrees * (M_PI / 180);
+	float fRadians = fDegrees * Maths2D::PI / 180;
 	
-	for (int i = 0; i < Monks.size(); i++) {
-		sf::Vector2f centre = Monks.at(i).getPosition();
-		//Monks.at(i).setPosition(Monks.at(i).getPosition() - centre);			//Move To Origin
-		Monks.at(i).setPosition(sf::Vector2f(cos(radian) * Monks.at(i).getPosition().x + -sin(radian) * Monks.at(i).getPosition().y,
-											sin(radian) * Monks.at(i).getPosition().x + cos(radian) * Monks.at(i).getPosition().y));
-		//Monks.at(i).setPosition(Monks.at(i).getPosition() + centre);			//Move Back
+	sf::Vector2f rotationPoint = sf::Vector2f(640, 360);
+	for (int i = 0; i < Monks.size(); i++)
+	{
+		sf::Vector2f monkPosition = Monks.at(i).getPosition();
+		float sin = sinf(fRadians);
+		float cos = cosf(fRadians);
+
+		// Translate the point
+		monkPosition -= rotationPoint;
+		// Rotate the point
+		float xNew = monkPosition.x * cos - monkPosition.y * sin;
+		float yNew = monkPosition.x * sin + monkPosition.y * cos;
+		// Translate the point back
+		monkPosition = sf::Vector2f(xNew + rotationPoint.x, yNew + rotationPoint.y);
+
+		// Set the position
+		Monks.at(i).setPosition(monkPosition);
 	}
 }
 
@@ -77,10 +88,9 @@ void  MonkGroup::updateMoveT() {
 
 void MonkGroup::update(sf::Time h) 
 {
-	RotateMonks(100);
+	RotateMonks(10 * h.asSeconds());
 	for (int i = 0; i < Monks.size(); i++) {
 		Monks[i].update(h);
-		Monks[i].rotate(100.f * h.asSeconds());
 	}
 }
 
