@@ -31,6 +31,11 @@ Play_Screen::Play_Screen() {
 	spawner.setPosition(sf::Vector2f(640, 360));
 	spawner.spawn();
 
+	energyTexture.loadFromFile("assets\\sprites\\spiritual_energy.png");
+	energy.setTexture(energyTexture);
+	energy.setOrigin(energy.getGlobalBounds().width / 2, energy.getGlobalBounds().height / 2);
+	energy.setPosition(640, 360);
+
 	font.loadFromFile("assets/fonts/times.ttf");
 	scoreText.setFont(font);
 	scoreText.setPosition(20, 10);
@@ -38,7 +43,7 @@ Play_Screen::Play_Screen() {
 	iWave = 1;
 }
 
-int Play_Screen::update(sf::Time h,InputHandler& input, int& iScore) {
+int Play_Screen::update(sf::Time h,InputHandler& input, int& iScore, int& iState) {
 	int iNewState = 1;
 
 	//Check button presses
@@ -51,9 +56,6 @@ int Play_Screen::update(sf::Time h,InputHandler& input, int& iScore) {
 		iWave++;
 		spawner.spawn();
 	}
-	
-	//if gameover, change to end screen, 3
-	//iNewState = 3;
 
 	//REMOVE the input check here, once proper game over check is made
 	if (input.bRight) {
@@ -72,14 +74,15 @@ int Play_Screen::update(sf::Time h,InputHandler& input, int& iScore) {
 	scoreText.setString("Score: " + std::to_string(iScore));
 
 	//Move using velocity
-	spawner.update(h,input,iScore);
+	spawner.update(h, input, iScore, iState, energy);
 	monk_Group.update(h);
-	return iNewState;
+	return iState;
 }
 
 void Play_Screen::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(background);
+	target.draw(energy);
 	target.draw(monk_Group, states);
 	target.draw(spawner, states);
 	target.draw(scoreText);

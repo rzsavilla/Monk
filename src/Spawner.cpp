@@ -37,7 +37,7 @@ void Spawner::setSpawnCount(int i) {
 	}
 }
 
-void Spawner::update(sf::Time h, InputHandler& input, int& score) {
+void Spawner::update(sf::Time h, InputHandler& input, int& score, int& iState, sf::Sprite& energy) {
 	// Check for clicks
 	std::shared_ptr<sf::RectangleShape> pMouseArea = nullptr;
 	if (input.bLeftClick)
@@ -51,6 +51,10 @@ void Spawner::update(sf::Time h, InputHandler& input, int& score) {
 	// Update velocity
 	for (int i = 0; i < entitiesSpawned.size(); i++) {
 		entitiesSpawned.at(i).update(h);
+		// Check for game over
+		if (energy.getGlobalBounds().intersects(entitiesSpawned.at(i).getGlobalBounds()))
+			iState = 3;
+
 		// Check for kills
 		if (pMouseArea != nullptr && entitiesSpawned.at(i).getGlobalBounds().intersects(pMouseArea->getGlobalBounds()))
 		{

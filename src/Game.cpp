@@ -59,7 +59,7 @@ void Game::update(sf::Time h)
 		iState = start_screen.update(input);
 	}
 	else if (iState == 1) {					//!< Game Screen
-		iState = play_screen.update(h, input, iScore);
+		iState = play_screen.update(h, input, iScore, iState);
 	}
 	else if (iState == 2) {					//!< Pause Screen
 		iState = pause_screen.update(input);

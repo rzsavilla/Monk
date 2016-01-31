@@ -46,14 +46,16 @@ private:
 	sf::Font font;
 	sf::Texture texture;
 	sf::Texture bg;
+	sf::Texture energyTexture;
 	sf::Text scoreText;
 	sf::Sprite background;
+	sf::Sprite energy;
 	Spawner spawner;
 
 	int iWave;
 public:
 	Play_Screen();
-	int update(sf::Time h, InputHandler& input, int& iScore);
+	int update(sf::Time h, InputHandler& input, int& iScore, int& iState);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	void initialize();
 };
