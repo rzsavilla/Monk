@@ -23,9 +23,10 @@ Play_Screen::Play_Screen() {
 
 	monk_Group.setMonkCount(10);
 
-	spawner.setPoints(20);
+	spawner.setPoints(50);
 	spawner.setRadius(720);
 	spawner.setSpawn(monk);
+	spawner.setSpawnCount(1);
 		
 	spawner.setPosition(sf::Vector2f(640, 360));
 	spawner.spawn();
@@ -33,6 +34,9 @@ Play_Screen::Play_Screen() {
 	font.loadFromFile("assets/fonts/times.ttf");
 	scoreText.setFont(font);
 	scoreText.setPosition(20, 10);
+
+	iWave = 1;
+	bNewSpawn = true;
 }
 
 int Play_Screen::update(sf::Time h,InputHandler& input, int& iScore) {
@@ -43,7 +47,13 @@ int Play_Screen::update(sf::Time h,InputHandler& input, int& iScore) {
 		iNewState = 2;
 		input.bEsc = false;
 	}
-
+	if (spawner.entitiesSpawned.size() <= 0 && bNewSpawn) {
+		iWave++;
+		std::cout << iWave << std::endl;
+		spawner.setSpawnCount(2 * iWave);
+		spawner.spawn();
+		bNewSpawn = false;
+	}
 	//if gameover, change to end screen, 3
 	//iNewState = 3;
 

@@ -49,6 +49,10 @@ private:
 	sf::Text scoreText;
 	sf::Sprite background;
 	Spawner spawner;
+
+	int iWave;
+
+	bool bNewSpawn;
 public:
 	Play_Screen();
 	int update(sf::Time h, InputHandler& input, int& iScore);

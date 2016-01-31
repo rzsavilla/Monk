@@ -27,10 +27,10 @@ private:
 
 	void randGenerate();							//Generate list of random numbers
 	std::vector<int> randomPosition;
-	std::vector<Entity> entitiesSpawned;
+	
 
 public:
-	
+	std::vector<Entity> entitiesSpawned;
 	Spawner();
 	void setPoints(int num);
 	void setRadius(float Radius);
@@ -38,6 +38,9 @@ public:
 	void setSpawn(Entity& entity);
 	void update(sf::Time h, InputHandler& input, int& score);
 	void spawn();									//Start Spawning
+
+
+	void setSpawnCount(int i);						//Number to Spawn
 
 	void collideMonks(std::vector<Entity>& monks);	//IMpulse Collision with monks
 	void updateMoveTo();

@@ -3,7 +3,7 @@
 #include <iostream>
 Spawner::Spawner() {
 	bSpawning = false;
-	iSpawnCount = 10;
+	//iSpawnCount = 10;
 }
 
 void Spawner::createPoints() {					//Generate Spawning Positions
@@ -29,6 +29,12 @@ void Spawner::setPosition(sf::Vector2f Position) {
 }
 void Spawner::setSpawn(Entity& entity) {
 	spawnEntity = entity;
+}
+
+void Spawner::setSpawnCount(int i) {
+	if (i >= iNumPoints) {
+		iSpawnCount = i;
+	}
 }
 
 void Spawner::update(sf::Time h, InputHandler& input, int& score) {
