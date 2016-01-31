@@ -3,12 +3,13 @@
 MonkGroup::MonkGroup() {
 	monkTexture.loadFromFile("assets/sprites/monk.png");
 	monk.setTexture(monkTexture);
-	monk.SetSpeed(100);
-	monk.SetMaxSpeed(100);
-	iMonkNum = 5;
+	monk.SetSpeed(0);
+	monk.SetAccel(0.0f);
+	monk.SetMaxSpeed(0);
+	iMonkNum = 8;
 	fRadius = 100;
 	Position = sf::Vector2f(640, 360);
-	createMonks();
+	//createMonks();
 }
 
 MonkGroup::MonkGroup(sf::Vector2f position, int NumberOfMonks, float fRadius) {
@@ -23,7 +24,7 @@ void MonkGroup::createMonks() {
 		//std::cout << targetPosition.y << std::endl;
 		Monks.push_back(monk);
 		Monks.back().setPosition(targetPosition);		//Spawns monk onto position
-		Monks.back().SetTarget(targetPosition + sf::Vector2f(50.f,50.f));			//Monks will move towards target
+		Monks.back().SetTarget(targetPosition + sf::Vector2f(50.f,50.f));			//Monks will move towards target		
 		//Monks.back().SetTarget(sf::Vector2f(100,300.f));			//Monks will move towards target
 		t += fdetlaT;
 	}
